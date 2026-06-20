@@ -8,6 +8,18 @@ public class Paquete implements ItemCatalogo{
 	private String descripcion;
 	private double descuento;
 	private List<ItemCatalogo> items = new ArrayList<>();
+
+	public Paquete(String nombre, String descripcion, List<ItemCatalogo> items) {
+		this(nombre, descripcion, items, 0.0d);
+	}
+	
+
+	public Paquete(String nombre, String descripcion, List<ItemCatalogo> items, double descuento) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.descuento = descuento;
+		this.items = items;
+	}
 	
 	@Override
 	public String getNombre() {
@@ -23,13 +35,13 @@ public class Paquete implements ItemCatalogo{
 		return this.descuento;
 	}
 	
-	/*
-	@Override
-	public Categoria getCategoria() {
-		return this.categoria;
+	public void agregar(ItemCatalogo item) {
+		this.items.add(item);
 	}
-	-------ARREGLAR---------
-	*/
+
+	public void quitar(ItemCatalogo item) {
+		this.items.remove(item);
+	}
 
 	@Override
 	public Double getPrecioBase() {
@@ -46,7 +58,17 @@ public class Paquete implements ItemCatalogo{
 		for (ItemCatalogo item: items) {
 			precioFinal += item.getPrecioFinal();
 		}
-		return precioFinal;
+		return precioFinal - (precioFinal * this.descuento);
+	}
+
+	@Override
+	public boolean tieneStock(Inventario inventario) {
+		for (ItemCatalogo item: items) {
+			if (! item.tieneStock(inventario)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 }

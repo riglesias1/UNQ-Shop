@@ -15,7 +15,7 @@ public class Producto implements ItemCatalogo{
 	}
 	
 	public Producto(String sku, String nombre,String descripcion, String marca, Categoria categoria, double precio, double descuentoPromocional) {
-		//validarPrecio() y descuento?
+		// TODO: validarPrecio() y descuento?
 		//validamos que el sku sea único?
 		//agregar getters y setters de atributos
 		this.sku = sku;
@@ -36,7 +36,6 @@ public class Producto implements ItemCatalogo{
 	public String getDescripcion() {
 		return this.descripcion;
 	}
-	@Override
 	public Categoria getCategoria() {
 		return this.categoria;
 	}
@@ -53,6 +52,11 @@ public class Producto implements ItemCatalogo{
 	}
 	public String getMarca() {
 		return this.marca;
+	}
+
+	@Override
+	public boolean tieneStock(Inventario inventario) {
+		return inventario.estaDisponible(this);
 	}
 	
 	
