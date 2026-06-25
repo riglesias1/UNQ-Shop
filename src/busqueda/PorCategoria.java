@@ -12,7 +12,6 @@ public class PorCategoria implements CriterioBusqueda {
 
 	@Override
 	public boolean satisface(ItemCatalogo item) {
-		// TODO: Ver categoria opcional?
-		return item.getCategoria() == this.categoria;
+		return item.esCategoria(this.categoria);
 	}
 }

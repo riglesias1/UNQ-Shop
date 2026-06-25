@@ -3,7 +3,6 @@ package busqueda;
 import java.util.ArrayList;
 import java.util.List;
 
-import catalogo.Categoria;
 import catalogo.ItemCatalogo;
 
 public class CriterioOr implements CriterioBusqueda {

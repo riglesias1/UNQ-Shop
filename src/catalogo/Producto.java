@@ -68,6 +68,11 @@ public class Producto implements ItemCatalogo{
     public Atributo getAtributo(String nombre) {
         return this.atributos.get(nombre);
     }
+    
+    @Override
+    public boolean esCategoria(Categoria categoria) {
+    	return this.categoria == categoria;
+    }
 
     @Override
     public boolean equals(Object obj) {

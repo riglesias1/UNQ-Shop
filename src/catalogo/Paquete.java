@@ -42,6 +42,17 @@ public class Paquete implements ItemCatalogo{
 	public void quitar(ItemCatalogo item) {
 		this.items.remove(item);
 	}
+	
+	@Override
+    public boolean esCategoria(Categoria categoria) {
+		for (ItemCatalogo item: this.items){
+			if (item.esCategoria(categoria)) {
+				return true;
+			}
+		}
+		return false;
+	}
+    
 
 	@Override
 	public Double getPrecioBase() {
