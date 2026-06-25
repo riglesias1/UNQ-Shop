@@ -1,8 +1,8 @@
 package busqueda;
 
 import catalogo.Categoria;
-import catalogo.Inventario;
 import catalogo.ItemCatalogo;
+import pedido.Inventario;
 
 public class PorDisponibilidad implements CriterioBusqueda {
 	private Inventario inventario;

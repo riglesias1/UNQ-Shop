@@ -1,7 +1,9 @@
-package catalogo;
+package pedido;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import catalogo.Producto;
 
 public class Inventario {
 

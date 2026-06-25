@@ -1,5 +1,7 @@
 package catalogo;
 
+import pedido.Inventario;
+
 public interface ItemCatalogo {
 	
 	public String getNombre();

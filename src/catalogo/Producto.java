@@ -3,6 +3,8 @@ package catalogo;
 import java.util.HashMap;
 import java.util.Map;
 
+import pedido.Inventario;
+
 public class Producto implements ItemCatalogo{
 	private String sku;
 	private String nombre;

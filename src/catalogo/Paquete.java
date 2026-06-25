@@ -3,6 +3,8 @@ package catalogo;
 import java.util.ArrayList;
 import java.util.List;
 
+import pedido.Inventario;
+
 public class Paquete implements ItemCatalogo{
 	private String nombre;
 	private String descripcion;
