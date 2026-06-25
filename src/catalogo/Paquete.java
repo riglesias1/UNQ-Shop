@@ -70,5 +70,4 @@ public class Paquete implements ItemCatalogo{
 		}
 		return true;
 	}
-	
 }

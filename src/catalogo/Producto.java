@@ -1,5 +1,8 @@
 package catalogo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Producto implements ItemCatalogo{
 	private String sku;
 	private String nombre;
@@ -8,7 +11,8 @@ public class Producto implements ItemCatalogo{
 	private Categoria categoria;
 	private double precio;
 	private double descuentoPromocional;
-	//map de atributos
+
+	private Map<String, Atributo> atributos = new HashMap<>();
 	
 	public Producto(String sku, String nombre,String descripcion, String marca, Categoria categoria, double precio) {
 		this(sku, nombre, descripcion, marca, categoria, precio, 0.0d);
@@ -16,8 +20,6 @@ public class Producto implements ItemCatalogo{
 	
 	public Producto(String sku, String nombre,String descripcion, String marca, Categoria categoria, double precio, double descuentoPromocional) {
 		// TODO: validarPrecio() y descuento?
-		//validamos que el sku sea único?
-		//agregar getters y setters de atributos
 		this.sku = sku;
 		this.nombre =nombre;
 		this.descripcion =descripcion;
@@ -58,6 +60,27 @@ public class Producto implements ItemCatalogo{
 	public boolean tieneStock(Inventario inventario) {
 		return inventario.estaDisponible(this);
 	}
-	
-	
+
+	public void definirAtributo(Atributo atributo) {
+        this.atributos.put(atributo.getNombre(), atributo);
+    }
+
+    public Atributo getAtributo(String nombre) {
+        return this.atributos.get(nombre);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Producto otro = (Producto) obj;
+        return this.sku.equals(otro.sku);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.sku.hashCode();
+    }
 }
