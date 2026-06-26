@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import catalogo.ItemCatalogo;
+import pedido.estado.EstadoBase;
+import pedido.estado.EstadoPedido;
 
 public class Pedido {
     private List<LineaPedido> lineas = new ArrayList<>();
@@ -29,6 +31,9 @@ public class Pedido {
         // this.lineas.remove(item);
     }
 	
+	public void setEstado(EstadoBase estado) {
+		this.estado = estado;
+	}
 	
 	// -------------- ESTADOS --------------  \\
 	public void confirmar(){
@@ -36,7 +41,7 @@ public class Pedido {
     }
     
     public void prepararEnvio(){
-        this.estado.prepararEnvio(this);
+        this.estado.enviar(this);
     }
     
     public void enviar(){

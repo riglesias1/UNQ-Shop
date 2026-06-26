@@ -15,8 +15,8 @@ public class EstadoBase implements EstadoPedido{
 	    }
 	 
 	    @Override
-	    public void prepararEnvio(Pedido pedido) {
-	        rechazar("preparar el envio");
+	    public void preparar(Pedido pedido) {
+	        rechazar("preparar");
 	    }
 	 
 	    @Override
