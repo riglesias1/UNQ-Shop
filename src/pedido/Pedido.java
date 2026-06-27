@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import catalogo.ItemCatalogo;
+import envio.MetodoEnvio;
+import pedido.estado.Borrador;
 import pedido.estado.EstadoBase;
 import pedido.estado.EstadoPedido;
+import pedido.observador.ObservadorPedido;
 
 public class Pedido {
     private List<LineaPedido> lineas = new ArrayList<>();
@@ -17,9 +20,10 @@ public class Pedido {
     private MetodoEnvio metodoEnvio;
     private String direccionEnvio;
 
-	public Pedido(Inventario inventario) {
-		this.inventario = inventario;
-	}
+    public Pedido(Inventario inventario) {
+        this.inventario = inventario;
+        this.estado = new Borrador();
+    }
 	
 	public void agregarItem(ItemCatalogo item, int cantidad){
 		LineaPedido linea = new LineaPedido(item, cantidad);
@@ -32,14 +36,22 @@ public class Pedido {
     }
 	
 	public void setEstado(EstadoBase estado) {
-		this.estado = estado;
+		EstadoPedido anterior = this.estado;
+        this.estado = estado;
+        notificar(anterior, estado);
 	}
 	
+	private void notificar(EstadoPedido anterior, EstadoPedido nuevo) {
+        for (ObservadorPedido observador : observadores) {
+            observador.alCambiarEstado(this, anterior, nuevo);
+        }
+    }
+
 	// -------------- ESTADOS --------------  \\
 	public void confirmar(){
         this.estado.confirmar(this);
     }
-    
+
     public void prepararEnvio(){
         this.estado.enviar(this);
     }
@@ -61,7 +73,7 @@ public class Pedido {
         this.observadores.add(observador);
     }
 
-    public void dessuscribir(ObservadorPedido observador){
+    public void desuscribir(ObservadorPedido observador){
         this.observadores.remove(observador);
     }
 

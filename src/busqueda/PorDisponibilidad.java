@@ -1,6 +1,5 @@
 package busqueda;
 
-import catalogo.Categoria;
 import catalogo.ItemCatalogo;
 import pedido.Inventario;
 

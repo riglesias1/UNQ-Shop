@@ -11,16 +11,15 @@ public class Paquete implements ItemCatalogo{
 	private double descuento;
 	private List<ItemCatalogo> items = new ArrayList<>();
 
-	public Paquete(String nombre, String descripcion, List<ItemCatalogo> items) {
-		this(nombre, descripcion, items, 0.0d);
+	public Paquete(String nombre, String descripcion) {
+		this(nombre, descripcion, 0.0d);
 	}
 	
 
-	public Paquete(String nombre, String descripcion, List<ItemCatalogo> items, double descuento) {
+	public Paquete(String nombre, String descripcion, double descuento) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.descuento = descuento;
-		this.items = items;
 	}
 	
 	@Override
@@ -59,7 +58,7 @@ public class Paquete implements ItemCatalogo{
 	@Override
 	public Double getPrecioBase() {
 		double precioBase = 0d;
-		for (ItemCatalogo item: items) {
+		for (ItemCatalogo item: this.items) {
 			precioBase += item.getPrecioBase();
 		}
 		return precioBase;
@@ -68,7 +67,7 @@ public class Paquete implements ItemCatalogo{
 	@Override
 	public Double getPrecioFinal() {
 		double precioFinal = 0d;
-		for (ItemCatalogo item: items) {
+		for (ItemCatalogo item: this.items) {
 			precioFinal += item.getPrecioFinal();
 		}
 		return precioFinal - (precioFinal * this.descuento);
@@ -76,7 +75,7 @@ public class Paquete implements ItemCatalogo{
 
 	@Override
 	public boolean tieneStock(Inventario inventario) {
-		for (ItemCatalogo item: items) {
+		for (ItemCatalogo item: this.items) {
 			if (! item.tieneStock(inventario)) {
 				return false;
 			}
