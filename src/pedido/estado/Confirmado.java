@@ -16,8 +16,8 @@ public class Confirmado extends EstadoBase {
 	
 	@Override
     public void cancelar(Pedido pedido) {
-        //pedido.reponerStock();
-        //TODO pedido.reembolsarPlata ?¿(pedido.totalProductos() );
+        pedido.reponerStock();
+        pedido.registrarNotaCredito(pedido.totalProductos() + pedido.costoEnvio());
         pedido.setEstado(new Cancelado());
     }
 }

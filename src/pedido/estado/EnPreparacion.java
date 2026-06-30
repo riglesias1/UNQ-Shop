@@ -16,8 +16,9 @@ public class EnPreparacion extends EstadoBase {
 	
 	@Override
 	public void cancelar(Pedido pedido) {
+		pedido.reponerStock();
+		pedido.registrarNotaCredito(pedido.totalProductos() + pedido.costoEnvio());
 		pedido.setEstado(new Cancelado());
-		//TODO: reponer stock y reembolsar coste de productos y envio
 	}
 
 }

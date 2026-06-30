@@ -1,5 +1,6 @@
 package pedido.estado;
 
+import catalogo.ItemCatalogo;
 import excepciones.MovimientoEstadoInvalido;
 import pedido.Pedido;
 
@@ -7,6 +8,16 @@ public abstract class EstadoBase implements EstadoPedido{
 	
 	protected String rechazar(String operacion) {
 		throw new MovimientoEstadoInvalido("No se puede " + operacion + " un pedido en estado " + nombre());
+	}
+
+	@Override
+	public void agregarItem(Pedido pedido, ItemCatalogo item, int cantidad) {
+		rechazar("agregar items a");
+	}
+
+	@Override
+	public void quitarItem(Pedido pedido, ItemCatalogo item) {
+		rechazar("quitar items de");
 	}
 	
 	@Override

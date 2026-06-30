@@ -16,9 +16,8 @@ public class Enviado extends EstadoBase{
 	
 	@Override
 	public void cancelar(Pedido pedido) {
+		pedido.registrarNotaCredito(pedido.totalProductos());
 		pedido.setEstado(new Cancelado());
-		//TODO: reembolsar envio (pero no coste de envio)
-		// reponer stock?
 	}
 
 }

@@ -19,6 +19,10 @@ public class LineaPedido {
 		return cantidad;
 	}
 
+	public void agregar(int cantidad) {
+		this.cantidad += cantidad;
+	}
+
 	public double subtotal() {
 		return this.item.getPrecioFinal() * this.cantidad;
 	}

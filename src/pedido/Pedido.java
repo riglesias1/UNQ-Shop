@@ -26,14 +26,62 @@ public class Pedido {
     }
 	
 	public void agregarItem(ItemCatalogo item, int cantidad){
-		LineaPedido linea = new LineaPedido(item, cantidad);
-        this.lineas.add(linea);
+		this.estado.agregarItem(this, item, cantidad);
     }
 
 	public void quitarItem(ItemCatalogo item){
-		// TODO: Checkear como quitar
-        // this.lineas.remove(item);
+		this.estado.quitarItem(this, item);
     }
+
+	public void agregarLinea(ItemCatalogo item, int cantidad){
+		// if (cantidad <= 0) {
+			// TODO: Agregar error
+		// }
+		for (LineaPedido linea : this.lineas) {
+			if (linea.getItem().equals(item)) {
+				linea.agregar(cantidad);
+				return;
+			}
+		}
+		this.lineas.add(new LineaPedido(item, cantidad));
+	}
+
+	public void sacarLinea(ItemCatalogo item){
+		this.lineas.removeIf(linea -> linea.getItem().equals(item));
+	}
+
+	public boolean estaVacio(){
+		return this.lineas.isEmpty();
+	}
+
+	public List<LineaPedido> getLineas(){
+		return this.lineas;
+	}
+
+	public double totalProductos(){
+		double total = 0d;
+		for (LineaPedido linea : this.lineas) {
+			total += linea.subtotal();
+		}
+		return total;
+	}
+
+	public double costoEnvio(){
+		return this.metodoEnvio == null ? 0d : this.metodoEnvio.calcularCosto(this);
+	}
+
+	// -------------- NOTA DE CREDITO -------------- \\
+	public void registrarNotaCredito(double monto){
+		this.notasCredito.add(new NotaCredito("Cancelacion de pedido", monto));
+	}
+
+	public List<NotaCredito> getNotasCredito(){
+		return this.notasCredito;
+	}
+
+	public void setMetodoEnvio(MetodoEnvio metodoEnvio){
+		this.metodoEnvio = metodoEnvio;
+	}
 
 	public void descontarStock(){
 		for (LineaPedido linea : this.lineas) {
