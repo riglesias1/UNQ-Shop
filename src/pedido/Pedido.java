@@ -34,6 +34,18 @@ public class Pedido {
 		// TODO: Checkear como quitar
         // this.lineas.remove(item);
     }
+
+	public void descontarStock(){
+		for (LineaPedido linea : this.lineas) {
+			this.inventario.decrementar(linea.getItem(), linea.getCantidad());
+		}
+	}
+
+	public void reponerStock(){
+		for (LineaPedido linea : this.lineas) {
+			this.inventario.incrementar(linea.getItem(), linea.getCantidad());
+		}
+	}
 	
 	public void setEstado(EstadoBase estado) {
 		EstadoPedido anterior = this.estado;
@@ -48,12 +60,16 @@ public class Pedido {
     }
 
 	// -------------- ESTADOS --------------  \\
+    public String nombreEstado() {
+        return estado.nombre();
+    }
+
 	public void confirmar(){
         this.estado.confirmar(this);
     }
 
     public void prepararEnvio(){
-        this.estado.enviar(this);
+        this.estado.preparar(this);
     }
     
     public void enviar(){
@@ -76,5 +92,4 @@ public class Pedido {
     public void desuscribir(ObservadorPedido observador){
         this.observadores.remove(observador);
     }
-
 }

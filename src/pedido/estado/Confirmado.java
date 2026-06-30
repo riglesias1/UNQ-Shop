@@ -3,7 +3,12 @@ package pedido.estado;
 import pedido.Pedido;
 
 public class Confirmado extends EstadoBase {
-
+	
+	@Override
+    public String nombre() {
+        return "CONFIRMADO";
+    }
+	
 	@Override
     public void preparar(Pedido pedido) {
         pedido.setEstado(new EnPreparacion());

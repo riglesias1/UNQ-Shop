@@ -1,12 +1,12 @@
 package pedido.estado;
 
+import excepciones.MovimientoEstadoInvalido;
 import pedido.Pedido;
 
-public class EstadoBase implements EstadoPedido{
+public abstract class EstadoBase implements EstadoPedido{
 	
-	//TODO: reemplazar por excepcion
 	protected String rechazar(String operacion) {
-		return "No se puede realizar la operacion " + operacion;
+		throw new MovimientoEstadoInvalido("No se puede " + operacion + " un pedido en estado " + nombre());
 	}
 	
 	@Override

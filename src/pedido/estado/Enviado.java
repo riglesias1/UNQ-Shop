@@ -5,6 +5,11 @@ import pedido.Pedido;
 public class Enviado extends EstadoBase{
 	
 	@Override
+    public String nombre() {
+        return "ENVIADO";
+    }
+
+	@Override
 	public void entregar(Pedido pedido) {
 		pedido.setEstado(new Entregado());
 	}

@@ -11,17 +11,13 @@ public class LineaPedido {
 		this.cantidad = cantidad;
 	}
 
-//	public ItemCatalogo getItem() {
-//		return item;
-//	}
-//
-//	public int getCantidad() {
-//		return cantidad;
-//	}
-//
-//	public void setCantidad(int cantidad) {
-//		this.cantidad = cantidad;
-//	}
+	public ItemCatalogo getItem() {
+		return item;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
 
 	public double subtotal() {
 		return this.item.getPrecioFinal() * this.cantidad;
