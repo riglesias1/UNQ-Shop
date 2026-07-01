@@ -20,4 +20,8 @@ public class RangoDias {
 	public static RangoDias entre(int minimo, int maximo) {
 		return new RangoDias(minimo,maximo);
 	}
+
+	public static RangoDias exacto(int valor) {
+		return new RangoDias(valor,valor);
+	}
 }

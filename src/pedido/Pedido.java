@@ -140,4 +140,8 @@ public class Pedido {
     public void desuscribir(ObservadorPedido observador){
         this.observadores.remove(observador);
     }
+
+	public String getDireccionEnvio() {
+		return this.direccionEnvio;
+	}
 }

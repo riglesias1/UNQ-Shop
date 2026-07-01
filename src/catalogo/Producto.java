@@ -57,11 +57,21 @@ public class Producto implements ItemCatalogo{
 	public String getMarca() {
 		return this.marca;
 	}
+	public Double getPeso() {
+		if (!this.tieneAtributo("peso")) {
+			return 0d;
+		}
+		return (Double) this.getAtributo("peso").getValor();
+	}
 
 	@Override
 	public boolean tieneStock(Inventario inventario) {
 		return inventario.estaDisponible(this);
 	}
+
+    public boolean tieneAtributo(String nombre) {
+        return this.atributos.containsKey(nombre);
+    }
 
 	public void definirAtributo(Atributo atributo) {
         this.atributos.put(atributo.getNombre(), atributo);

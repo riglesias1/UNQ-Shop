@@ -35,6 +35,14 @@ public class Paquete implements ItemCatalogo{
 	public double getDescuento() {
 		return this.descuento;
 	}
+
+	public Double getPeso() {
+		double pesoTotal = 0d;
+		for (ItemCatalogo item: this.items) {
+			pesoTotal += item.getPeso();
+		}
+		return pesoTotal;
+	}
 	
 	public void agregar(ItemCatalogo item) {
 		this.items.add(item);
