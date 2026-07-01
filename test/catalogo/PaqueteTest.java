@@ -3,10 +3,6 @@ package catalogo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import catalogo.Categoria;
-import catalogo.Paquete;
-import catalogo.Producto;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
