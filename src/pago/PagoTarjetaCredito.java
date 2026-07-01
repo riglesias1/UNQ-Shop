@@ -1,5 +1,6 @@
 package pago;
 
+import excepciones.PagoInvalidoException;
 import pedido.Pedido;
 
 public class PagoTarjetaCredito extends MetodoPago {
@@ -19,7 +20,7 @@ public class PagoTarjetaCredito extends MetodoPago {
 	protected void validarDatos(Pedido pedido) {
 		boolean esValida = apiTarjeta.validarTarjeta(this.nroTarjeta, this.cvv, this.vencimiento);
 		if (!esValida) {
-			//TODO throw error datos de tarjeta invalidos
+			throw new PagoInvalidoException("Los datos de la tarjeta de crédito son inválidos");
 		}
 	}
 
@@ -32,12 +33,17 @@ public class PagoTarjetaCredito extends MetodoPago {
 	protected void ejecutarTransaccion(Pedido pedido) {
 		apiTarjeta.ejecutar(pedido.totalProductos());
 	}
-	
+
 	@Override
 	protected void notificarResultado(ResultadoPago resultado) {
-		// TODO 
+		super.notificarResultado(resultado);
+		resultado.registrarComprobante("Cupón de pago - tarjeta ****" + ultimosDigitos());
 	}
-	
-	
 
+	private String ultimosDigitos() {
+		if (this.nroTarjeta == null || this.nroTarjeta.length() < 4) {
+			return this.nroTarjeta;
+		}
+		return this.nroTarjeta.substring(this.nroTarjeta.length() - 4);
+	}
 }

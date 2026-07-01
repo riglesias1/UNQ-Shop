@@ -1,7 +1,6 @@
 package pedido.estado;
 
 import catalogo.ItemCatalogo;
-import excepciones.MovimientoEstadoInvalido;
 import pedido.Pedido;
 
 public class Borrador extends EstadoBase{

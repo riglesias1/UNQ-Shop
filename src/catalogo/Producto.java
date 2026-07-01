@@ -1,5 +1,6 @@
 package catalogo;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,6 +80,10 @@ public class Producto implements ItemCatalogo{
 
     public Atributo getAtributo(String nombre) {
         return this.atributos.get(nombre);
+    }
+
+    public Collection<Atributo> getAtributos() {
+        return this.atributos.values();
     }
     
     @Override

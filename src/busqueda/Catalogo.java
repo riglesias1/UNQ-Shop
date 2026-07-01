@@ -13,6 +13,12 @@ public class Catalogo {
 	}
 
 	public List<ItemCatalogo> buscar(CriterioBusqueda criterio) {
-		return this.items;
+		List<ItemCatalogo> resultado = new ArrayList<>();
+		for (ItemCatalogo item : this.items) {
+			if (criterio.satisface(item)) {
+				resultado.add(item);
+			}
+		}
+		return resultado;
 	}
 }

@@ -11,6 +11,7 @@ public class PorNombre implements CriterioBusqueda {
 
 	@Override
 	public boolean satisface(ItemCatalogo item) {
-		return item.getNombre() == this.texto;
+		return item.getNombre() != null
+				&& item.getNombre().toLowerCase().contains(this.texto.toLowerCase());
 	}
 }
