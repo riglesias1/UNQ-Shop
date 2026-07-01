@@ -54,6 +54,26 @@ public class PaqueteTest {
         // (8755 (pack final) + 5000 + 2000) * 0.90 = 14179.5
         assertEquals(14179.5, kitHomeOffice.getPrecioFinal(), 0.001);
     }
+	
+	@Test
+	void pesoConPaqueteAnidado() {
+		Producto teclado = new Producto("TEC-001", "Teclado", null, "Logitech", Categoria.ELECTRONICA, 5000);
+        Producto mouse = new Producto("MOU-001", "Mouse", null, "Logitech", Categoria.ELECTRONICA, 2000);
+        Producto monitor = new Producto("MON-001", "Monitor", null, "Samsung", Categoria.ELECTRONICA, 2000);
+        
+        Paquete paqueteBasico = packAudioMovil;
+        paqueteBasico.agregar(teclado);
+        paqueteBasico.agregar(monitor);
+        
+        teclado.definirAtributo(new Atributo("peso", 5.5, true));
+        mouse.definirAtributo(new Atributo("peso", 10d, true));
+ 
+        Paquete kitHomeOffice = new Paquete("Kit Home Office", null, 0.10);
+        kitHomeOffice.agregar(paqueteBasico);
+        kitHomeOffice.agregar(mouse);
+        
+        assertEquals(15.5d, kitHomeOffice.getPeso());
+	}
  
     @Test
     void respetaDescuentosDeLosItemsEnPaquete() {
@@ -66,6 +86,25 @@ public class PaqueteTest {
 
         assertEquals(1500, combo.getPrecioBase(), 0.001);   // 1000 + 500
         assertEquals(1300, combo.getPrecioFinal(), 0.001);  // 800 + 500
+    }
+    
+    @Test
+    void categoriaDePaquete() {
+    	Paquete paquete = packAudioMovil;
+    	Producto soporte = new Producto("PRO-002", "Soporte", null, "Genérica", Categoria.HOGAR, 500);
+    	paquete.agregar(soporte);
+    	assertTrue(paquete.esCategoria(Categoria.HOGAR));
+    	
+    	paquete.quitar(soporte);
+    	assertFalse(paquete.esCategoria(Categoria.HOGAR));
+    }
+    
+    @Test
+    void getersBasicos() {
+    	packAudioMovil = new Paquete("Pack Audio Móvil", null, 0.15);
+    	assertEquals("Pack Audio Móvil", packAudioMovil.getNombre());
+    	assertEquals(null, packAudioMovil.getDescripcion());
+    	assertEquals(0.15d, packAudioMovil.getDescuento());
     }
 
     @Test

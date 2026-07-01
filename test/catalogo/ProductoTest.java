@@ -46,11 +46,12 @@ public class ProductoTest {
     @Test
     void atributosDinamicos() {
         Producto producto = new Producto("P-1", "Producto", null, "m", Categoria.HOGAR, 500);
-        producto.definirAtributo(new Atributo("Peso", 1.2, true));
+        producto.definirAtributo(new Atributo("peso", 1.2, true));
  
-        Atributo peso = producto.getAtributo("Peso");
+        Atributo peso = producto.getAtributo("peso");
  
         assertEquals(1.2, peso.getValor());
+        assertEquals(1.2, producto.getPeso());
         assertTrue(peso.tieneValor());
     }
  
@@ -59,5 +60,19 @@ public class ProductoTest {
         Producto producto = new Producto("P-1", "Producto", null, "m", Categoria.HOGAR, 500);
  
         assertTrue(producto.getAtributo("Alto") == null);
+        assertEquals(0d, producto.getPeso());
+    }
+    
+    @Test
+    void getersBasicos() {
+    	Producto producto = new Producto("P-1", "Producto", null, "m", Categoria.HOGAR, 500);
+    	assertEquals("P-1", producto.getSku());
+    	assertEquals("Producto", producto.getNombre());
+    	assertEquals(null, producto.getDescripcion());
+    	assertEquals("m", producto.getMarca());
+    	assertEquals(Categoria.HOGAR, producto.getCategoria());
+    	assertEquals(500, producto.getPrecioBase());
+    	
+    	assertTrue(producto.esCategoria(Categoria.HOGAR));
     }
 }
