@@ -49,9 +49,7 @@ public class PaqueteTest {
         kitHomeOffice.agregar(teclado);
         kitHomeOffice.agregar(mouse);
  
-        // 10300 (pack) + 5000 + 2000 = 17300
         assertEquals(17300, kitHomeOffice.getPrecioBase(), 0.001);
-        // (8755 (pack final) + 5000 + 2000) * 0.90 = 14179.5
         assertEquals(14179.5, kitHomeOffice.getPrecioFinal(), 0.001);
     }
 	
@@ -84,8 +82,8 @@ public class PaqueteTest {
         combo.agregar(conPromo);
         combo.agregar(sinPromo);
 
-        assertEquals(1500, combo.getPrecioBase(), 0.001);   // 1000 + 500
-        assertEquals(1300, combo.getPrecioFinal(), 0.001);  // 800 + 500
+        assertEquals(1500, combo.getPrecioBase(), 0.001);
+        assertEquals(1300, combo.getPrecioFinal(), 0.001);
     }
     
     @Test
@@ -117,15 +115,22 @@ public class PaqueteTest {
 		assertTrue(packAudioMovil.tieneStock(inventario));
 	}
 
-    @Test
-    void descuentoInvalido() {
-    	// TODO: Ver si hacer, el constructor rechaza un descuento fuera de [0, 1].
-    }
+	@Test
+	void paqueteTieneStockSoloSiTodosSusItemsTienenStock() {
+		Producto electronico = new Producto("SKU-1", "Cable", null, "M", Categoria.ELECTRONICA, 800);
+		Producto hogar = new Producto("SKU-2", "Toalla", null, "M", Categoria.HOGAR, 500);
+		Paquete combo = new Paquete("Combo", "desc");
+		combo.agregar(electronico);
+		combo.agregar(hogar);
 
-    @Test
-    void noPuedeContenerseASiMismo() {
-    	// TODO: Ver si hacer, un paquete no puede contenerse a si mismo.
-    }
+		Inventario inventario = mock(Inventario.class);
+		when(inventario.estaDisponible(electronico)).thenReturn(true);
+		when(inventario.estaDisponible(hogar)).thenReturn(true);
+		assertTrue(combo.tieneStock(inventario));
+
+		when(inventario.estaDisponible(hogar)).thenReturn(false);
+		assertFalse(combo.tieneStock(inventario));
+	}
 
     @Test
     void paqueteVacioTienePrecioCero() {

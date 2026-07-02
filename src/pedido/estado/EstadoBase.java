@@ -6,42 +6,42 @@ import pedido.Pedido;
 
 public abstract class EstadoBase implements EstadoPedido{
 	
-	protected String rechazar(String operacion) {
-		throw new MovimientoEstadoInvalido("No se puede " + operacion + " un pedido en estado " + nombre());
+	protected MovimientoEstadoInvalido rechazar(String operacion) {
+		return new MovimientoEstadoInvalido("No se puede " + operacion + " un pedido en estado " + nombre());
 	}
 
 	@Override
 	public void agregarItem(Pedido pedido, ItemCatalogo item, int cantidad) {
-		rechazar("agregar items a");
+		throw rechazar("agregar items a");
 	}
 
 	@Override
 	public void quitarItem(Pedido pedido, ItemCatalogo item) {
-		rechazar("quitar items de");
+		throw rechazar("quitar items de");
 	}
-	
+
 	@Override
 	public void confirmar(Pedido pedido) {
-		rechazar("confirmar");
+		throw rechazar("confirmar");
 	}
-	
+
 	@Override
 	public void preparar(Pedido pedido) {
-		rechazar("preparar");
+		throw rechazar("preparar");
 	}
-	
+
 	@Override
 	public void enviar(Pedido pedido) {
-		rechazar("enviar");
+		throw rechazar("enviar");
 	}
-	
+
 	@Override
 	public void entregar(Pedido pedido) {
-		rechazar("entregar");
+		throw rechazar("entregar");
 	}
-	
+
 	@Override
 	public void cancelar(Pedido pedido) {
-		rechazar("cancelar");
+		throw rechazar("cancelar");
 	}
 }

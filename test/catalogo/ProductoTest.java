@@ -64,6 +64,18 @@ public class ProductoTest {
         assertTrue(producto.getAtributo("Alto") == null);
         assertEquals(0d, producto.getPeso());
     }
+
+	@Test
+	void productoEqualsSegunSku() {
+		Producto unSku = new Producto("SKU-1", "A", null, "M", Categoria.ELECTRONICA, 10);
+		Producto mismoSku = new Producto("SKU-1", "B", null, "M", Categoria.HOGAR, 20);
+		Producto otroSku = new Producto("SKU-2", "A", null, "M", Categoria.ELECTRONICA, 10);
+
+		assertTrue(unSku.equals(mismoSku));
+		assertFalse(unSku.equals(otroSku));
+		assertFalse(unSku.equals(null));
+		assertFalse(unSku.equals("no es un producto"));
+	}
     
     @Test
     void getersBasicos() {
