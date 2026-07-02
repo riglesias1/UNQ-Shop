@@ -48,7 +48,7 @@ public class ReporteProductosMasVendidosTest {
 
 		assertEquals(2, tabla.getFilas().size());
 
-		assertEquals(List.of("Auriculares Bluetooth", "5", "8000.00"), tabla.getFilas().get(0).getCeldas());
-		assertEquals(List.of("Cable USB-C", "1", "800.00"), tabla.getFilas().get(1).getCeldas());
+		assertEquals(List.of("Auriculares Bluetooth", "5", "8000.0"), tabla.getFilas().get(0).getCeldas());
+		assertEquals(List.of("Cable USB-C", "1", "800.0"), tabla.getFilas().get(1).getCeldas());
 	}
 }

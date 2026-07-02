@@ -49,14 +49,26 @@ public class ReporteProductosMasVendidos implements Reporte {
 		}
 		
 		VentaAcumulada nueva = new VentaAcumulada(item);
+		acumuladas.add(nueva);
 		return nueva;
 	}
 
 	private ElementoReporte generarReporte(List<VentaAcumulada> acumuladas) {
+		List<Fila> filas = new ArrayList<>();
+		
+		for (VentaAcumulada acumulada : acumuladas) {
+			
+			String nombre = acumulada.getItem().getNombre();
+			String unidades = Integer.toString(acumulada.getUnidades());
+			String precioPromedio = Double.toString(acumulada.getPrecioPromedio());
+						
+			filas.add(new Fila(List.of(nombre, unidades, precioPromedio)));
+		}
+
 		return new Tabla(
-				"titu",
-				"columnas",
-				"filas"
+				"Productos mas vendidos",
+				List.of("Item", "Cant, vendido", "Precio promedio"),
+				filas
 			);
 	}	
 }

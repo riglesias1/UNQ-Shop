@@ -44,7 +44,8 @@ public class ProductoTest {
         producto.definirAtributo(new Atributo("peso", 1.2, true));
  
         Atributo peso = producto.getAtributo("peso");
- 
+
+        assertEquals(1, producto.getAtributos().size());
         assertEquals(1.2, peso.getValor());
         assertEquals(1.2, producto.getPeso());
         assertTrue(peso.tieneValor());

@@ -3,7 +3,11 @@ package catalogo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import pedido.Inventario;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 
 public class PaqueteTest {
@@ -102,6 +106,16 @@ public class PaqueteTest {
     	assertEquals(null, packAudioMovil.getDescripcion());
     	assertEquals(0.15d, packAudioMovil.getDescuento());
     }
+
+	@Test
+	void productoTieneStockEnInventario() {
+		Inventario inventario = new Inventario();
+		inventario.incrementar(auriculares, 1);
+		inventario.incrementar(funda, 1);
+		inventario.incrementar(cable, 1);
+
+		assertTrue(packAudioMovil.tieneStock(inventario));
+	}
 
     @Test
     void descuentoInvalido() {
