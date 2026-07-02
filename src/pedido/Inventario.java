@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import catalogo.ItemCatalogo;
+import excepciones.StockInsuficienteException;
 
 public class Inventario {
 
@@ -18,10 +19,10 @@ public class Inventario {
     public void decrementar(ItemCatalogo producto, int cantidad) {
         int stockActual = this.stockDe(producto);
 
-        // TODO: Ver de verificar la cantidad
-        // if (stockActual < cantidad) {
-        //     "error"
-        // }
+        if (stockActual < cantidad) {
+            throw new StockInsuficienteException(
+                    "No hay stock suficiente: se pidio " + cantidad + " y hay " + stockActual);
+        }
         this.stockPorProducto.put(producto, stockActual - cantidad);
     }
 

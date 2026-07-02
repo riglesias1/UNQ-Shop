@@ -1,6 +1,7 @@
 package pedido.estado;
 
 import catalogo.ItemCatalogo;
+import excepciones.MovimientoEstadoInvalido;
 import pedido.Pedido;
 
 public class Borrador extends EstadoBase{
@@ -23,7 +24,7 @@ public class Borrador extends EstadoBase{
 	@Override
     public void confirmar(Pedido pedido) {
         if (pedido.estaVacio()) {
-            // TODO: error de "No se puede confirmar un pedido vacio"
+            throw new MovimientoEstadoInvalido("No se puede confirmar un pedido vacío");
         }
         pedido.setEstado(new Confirmado());
         pedido.descontarStock();

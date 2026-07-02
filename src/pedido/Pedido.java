@@ -6,6 +6,7 @@ import java.util.List;
 
 import catalogo.ItemCatalogo;
 import envio.MetodoEnvio;
+import excepciones.CantidadInvalidaException;
 import pedido.estado.Borrador;
 import pedido.estado.EstadoBase;
 import pedido.estado.EstadoPedido;
@@ -37,9 +38,9 @@ public class Pedido {
     }
 
 	public void agregarLinea(ItemCatalogo item, int cantidad){
-		// if (cantidad <= 0) {
-			// TODO: Agregar error
-		// }
+		if (cantidad <= 0) {
+			throw new CantidadInvalidaException("La cantidad debe ser mayor a cero");
+		}
 		for (LineaPedido linea : this.lineas) {
 			if (linea.getItem().equals(item)) {
 				linea.agregar(cantidad);

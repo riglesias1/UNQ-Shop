@@ -2,6 +2,8 @@ package catalogo;
 
 import org.junit.jupiter.api.Test;
 
+import excepciones.PrecioInvalidoException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -30,12 +32,16 @@ public class ProductoTest {
  
     @Test
     void precioNegativoEsInvalido() {
-        // TODO: Ver si hacer, el constructor rechaza un precio negativo.
+        assertThrows(PrecioInvalidoException.class,
+                () -> new Producto("P-1", "Producto", null, "marca", Categoria.HOGAR, -1));
     }
- 
+
     @Test
     void descuentoFueraDeRangoEsInvalido() {
-        // TODO: Ver si hacer, el constructor rechaza un descuento fuera de [0, 1].
+        assertThrows(PrecioInvalidoException.class,
+                () -> new Producto("P-1", "Producto", null, "marca", Categoria.HOGAR, 100, 1.5));
+        assertThrows(PrecioInvalidoException.class,
+                () -> new Producto("P-1", "Producto", null, "marca", Categoria.HOGAR, 100, -0.2));
     }
 
     @Test

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import catalogo.Categoria;
 import catalogo.Producto;
+import excepciones.CantidadInvalidaException;
 import excepciones.MovimientoEstadoInvalido;
 import pedido.Inventario;
 import pedido.Pedido;
@@ -62,17 +63,16 @@ public class BorradorTest {
         assertEquals(mouse, pedido.getLineas().get(0).getItem());
     }
 
-//    @Test
-//    void noSePuedeSumarItemConCantidadNegativa() {
-//        // TODO: Agregar cuando gestionemos excepciones
-//        assertThrows(IllegalArgumentException.class, () -> pedido.agregarItem(teclado, 0));
-//    }
+    @Test
+    void noSePuedeSumarItemConCantidadCeroONegativa() {
+        assertThrows(CantidadInvalidaException.class, () -> pedido.agregarItem(teclado, 0));
+        assertThrows(CantidadInvalidaException.class, () -> pedido.agregarItem(teclado, -3));
+    }
 
-//    @Test
-//    void noSePuedeConfirmarUnPedidoVacio() {
-//    	// TODO: Agregar cuando gestionemos excepciones
-//        assertThrows(MovimientoEstadoInvalido.class, () -> pedido.confirmar());
-//    }
+    @Test
+    void noSePuedeConfirmarUnPedidoVacio() {
+        assertThrows(MovimientoEstadoInvalido.class, () -> pedido.confirmar());
+    }
 
     @Test
     void soloSePuedenAgregarItemsEnBorrador() {

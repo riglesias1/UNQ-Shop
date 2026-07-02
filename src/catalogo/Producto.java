@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import excepciones.PrecioInvalidoException;
 import pedido.Inventario;
 
 public class Producto implements ItemCatalogo{
@@ -22,7 +23,12 @@ public class Producto implements ItemCatalogo{
 	}
 	
 	public Producto(String sku, String nombre,String descripcion, String marca, Categoria categoria, double precio, double descuentoPromocional) {
-		// TODO: validarPrecio() y descuento?
+		if (precio < 0) {
+			throw new PrecioInvalidoException("El precio no puede ser negativo");
+		}
+		if (descuentoPromocional < 0 || descuentoPromocional > 1) {
+			throw new PrecioInvalidoException("El descuento debe estar entre 0 y 1");
+		}
 		this.sku = sku;
 		this.nombre =nombre;
 		this.descripcion =descripcion;
