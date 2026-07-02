@@ -1,5 +1,6 @@
 package pedido;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,12 @@ public class Pedido {
     private EstadoPedido estado;
     private MetodoEnvio metodoEnvio;
     private String direccionEnvio;
+    private LocalDate fecha;
 
     public Pedido(Inventario inventario) {
         this.inventario = inventario;
         this.estado = new Borrador();
+        this.fecha = LocalDate.now();
     }
 	
 	public void agregarItem(ItemCatalogo item, int cantidad){
@@ -143,5 +146,13 @@ public class Pedido {
 
 	public String getDireccionEnvio() {
 		return this.direccionEnvio;
+	}
+
+	public LocalDate getFecha() {
+		return this.fecha;
+	}
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
 	}
 }
