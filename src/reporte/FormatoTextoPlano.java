@@ -23,6 +23,7 @@ public class FormatoTextoPlano implements VisitanteFormato {
 	@Override
 	public void visitarFila(Fila fila) {
 		this.agregar(String.join(" | ", fila.getCeldas()));
+		this.agregar("\n");
 	}
 
 	@Override

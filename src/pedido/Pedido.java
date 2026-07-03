@@ -7,6 +7,8 @@ import java.util.List;
 import catalogo.ItemCatalogo;
 import envio.MetodoEnvio;
 import excepciones.CantidadInvalidaException;
+import pago.MetodoPago;
+import pago.ResultadoPago;
 import pedido.estado.Borrador;
 import pedido.estado.EstadoBase;
 import pedido.estado.EstadoPedido;
@@ -20,6 +22,7 @@ public class Pedido {
     
     private EstadoPedido estado;
     private MetodoEnvio metodoEnvio;
+    private MetodoPago metodoPago;
     private String direccionEnvio;
     private LocalDate fecha;
 
@@ -87,6 +90,10 @@ public class Pedido {
 		this.metodoEnvio = metodoEnvio;
 	}
 
+	public void setMetodoPago(MetodoPago metodoPago){
+		this.metodoPago = metodoPago;
+	}
+
 	public void descontarStock(){
 		for (LineaPedido linea : this.lineas) {
 			this.inventario.decrementar(linea.getItem(), linea.getCantidad());
@@ -110,6 +117,10 @@ public class Pedido {
             observador.alCambiarEstado(this, anterior, nuevo);
         }
     }
+
+	public ResultadoPago procesarPago(){
+		return this.metodoPago.procesar(this);
+	}
 
 	// -------------- ESTADOS --------------  \\
     public String nombreEstado() {

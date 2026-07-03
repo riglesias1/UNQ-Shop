@@ -19,6 +19,6 @@ public class EnvioExpress implements MetodoEnvio {
 
 	@Override
 	public double calcularCosto(Pedido pedido){
-		return (pedido.totalProductos() * (1 + this.porcentajeFijo)) + this.cargoBase;
+		return (pedido.totalProductos() *  this.porcentajeFijo) + this.cargoBase;
 	}
 }

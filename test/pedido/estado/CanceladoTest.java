@@ -6,10 +6,13 @@ import org.junit.jupiter.api.Test;
 import catalogo.Categoria;
 import catalogo.Producto;
 import envio.EnvioExpress;
+import pago.ApiBilleteraVirtual;
+import pago.PagoBilleteraVirtual;
 import pedido.Inventario;
 import pedido.Pedido;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 
 public class CanceladoTest {
@@ -25,6 +28,7 @@ public class CanceladoTest {
 
         pedido = new Pedido(inventario);
         pedido.setMetodoEnvio(new EnvioExpress(500d, 0d));
+        pedido.setMetodoPago(new PagoBilleteraVirtual(mock(ApiBilleteraVirtual.class)));
         pedido.agregarItem(producto, 1);
     }
 
@@ -44,7 +48,7 @@ public class CanceladoTest {
 
         assertEquals(10, inventario.stockDe(producto));
         assertEquals(1, pedido.getNotasCredito().size());
-        assertEquals(1000 + 1500, pedido.getNotasCredito().get(0).getMonto(), 0.001);
+        assertEquals(1000 + 500, pedido.getNotasCredito().get(0).getMonto(), 0.001);
     }
 
     @Test
@@ -54,7 +58,7 @@ public class CanceladoTest {
         pedido.cancelar();
 
         assertEquals(10, inventario.stockDe(producto));
-        assertEquals(1000 + 1500, pedido.getNotasCredito().get(0).getMonto(), 0.001);
+        assertEquals(1000 + 500, pedido.getNotasCredito().get(0).getMonto(), 0.001);
     }
 
     @Test

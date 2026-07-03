@@ -67,7 +67,7 @@ public class ReporteProductosMasVendidos implements Reporte {
 
 		return new Tabla(
 				"Productos mas vendidos",
-				List.of("Item", "Cant, vendido", "Precio promedio"),
+				List.of("Item", "Cantidad vendida", "Precio promedio"),
 				filas
 			);
 	}	

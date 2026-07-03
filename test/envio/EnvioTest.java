@@ -46,7 +46,7 @@ public class EnvioTest {
 	void envioExpressCalculaPorcentajeSobreTotalMasCargoBaseYEstima1Dia() {
 		EnvioExpress envio = new EnvioExpress(500.0, 0.10);
 
-		assertEquals(3800.0, envio.calcularCosto(pedido), 0.001);
+		assertEquals(800.0, envio.calcularCosto(pedido), 0.001);
 		assertEquals(1, envio.estimarDias(pedido).getMinimo());
 		assertEquals(1, envio.estimarDias(pedido).getMaximo());
 	}

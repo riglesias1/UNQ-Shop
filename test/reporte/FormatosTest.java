@@ -24,7 +24,7 @@ public class FormatosTest {
 		FormatoTextoPlano visitante = new FormatoTextoPlano();
 		tabla.aceptar(visitante);
 
-		assertEquals("Reporte\nItem | Unidades\nAuriculares | 5", visitante.resultado());
+		assertEquals("Reporte\nItem | Unidades\nAuriculares | 5\n", visitante.resultado());
 	}
 
 	@Test
