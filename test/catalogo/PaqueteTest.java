@@ -112,7 +112,7 @@ public class PaqueteTest {
 		inventario.incrementar(funda, 1);
 		inventario.incrementar(cable, 1);
 
-		assertTrue(packAudioMovil.tieneStock(inventario));
+		assertTrue(packAudioMovil.tieneStock(inventario, 1));
 	}
 
 	@Test
@@ -124,12 +124,12 @@ public class PaqueteTest {
 		combo.agregar(hogar);
 
 		Inventario inventario = mock(Inventario.class);
-		when(inventario.estaDisponible(electronico)).thenReturn(true);
-		when(inventario.estaDisponible(hogar)).thenReturn(true);
-		assertTrue(combo.tieneStock(inventario));
+		when(inventario.hayStock(electronico, 1)).thenReturn(true);
+		when(inventario.hayStock(hogar, 1)).thenReturn(true);
+		assertTrue(combo.tieneStock(inventario, 1));
 
-		when(inventario.estaDisponible(hogar)).thenReturn(false);
-		assertFalse(combo.tieneStock(inventario));
+		when(inventario.hayStock(hogar, 1)).thenReturn(false);
+		assertFalse(combo.tieneStock(inventario, 1));
 	}
 
     @Test

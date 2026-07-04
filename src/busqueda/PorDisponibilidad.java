@@ -12,6 +12,6 @@ public class PorDisponibilidad implements CriterioBusqueda {
 
 	@Override
 	public boolean satisface(ItemCatalogo item) {
-		return item.tieneStock(this.inventario);
+		return item.tieneStock(this.inventario, 1);
 	}
 }

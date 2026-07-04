@@ -29,8 +29,12 @@ public class Inventario {
     public int stockDe(ItemCatalogo producto) {
         return this.stockPorProducto.getOrDefault(producto, 0);
     }
+    
+    public boolean hayStock(ItemCatalogo item, int cantidad) {
+    	return this.stockDe(item) >= cantidad;
+    }
 
     public boolean estaDisponible(ItemCatalogo producto) {
-        return this.stockDe(producto) > 0;
+        return this.hayStock(producto, 1);
     }
 }

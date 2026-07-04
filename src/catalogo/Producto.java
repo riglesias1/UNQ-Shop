@@ -72,8 +72,8 @@ public class Producto implements ItemCatalogo{
 	}
 
 	@Override
-	public boolean tieneStock(Inventario inventario) {
-		return inventario.estaDisponible(this);
+	public boolean tieneStock(Inventario inventario, int cantidad) {
+		return inventario.hayStock(this, cantidad);
 	}
 
     public boolean tieneAtributo(String nombre) {

@@ -44,7 +44,7 @@ public class CriteriosTest {
 	@Test
 	void porDisponibilidadConsultaElInventario() {
 		Inventario inventario = mock(Inventario.class);
-		when(inventario.estaDisponible(auriculares)).thenReturn(true);
+		when(inventario.hayStock(auriculares, 1)).thenReturn(true);
 
 		assertTrue(new PorDisponibilidad(inventario).satisface(auriculares));
 	}

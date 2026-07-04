@@ -10,5 +10,5 @@ public interface ItemCatalogo {
 	public Double getPrecioFinal();
 	public Double getPeso();
 	public boolean esCategoria(Categoria c);
-	public boolean tieneStock(Inventario inventario);
+	public boolean tieneStock(Inventario inventario, int cantidad);
 }

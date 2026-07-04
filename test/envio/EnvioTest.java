@@ -54,7 +54,7 @@ public class EnvioTest {
 	@Test
 	void retiroEnSucursalCuestaCeroYEsInmediatoSiHayStockLocal() {
 		Sucursal sucursal = mock(Sucursal.class);
-		when(sucursal.hayStockEnLocal(producto)).thenReturn(true);
+		when(sucursal.hayStockEnLocal(producto, 3)).thenReturn(true);
 		RetiroEnSucursal retiro = new RetiroEnSucursal(sucursal);
 
 		assertEquals(0.0, retiro.calcularCosto(pedido), 0.001);
@@ -64,7 +64,7 @@ public class EnvioTest {
 	@Test
 	void retiroEnSucursalEstimaHasta3DiasSiRequiereTraslado() {
 		Sucursal sucursal = mock(Sucursal.class);
-		when(sucursal.hayStockEnLocal(producto)).thenReturn(false);
+		when(sucursal.hayStockEnLocal(producto, 1)).thenReturn(false);
 		RetiroEnSucursal retiro = new RetiroEnSucursal(sucursal);
 
 		RangoDias dias = retiro.estimarDias(pedido);
@@ -75,9 +75,9 @@ public class EnvioTest {
 	@Test
 	void sucursalDelegaEnElInventario() {
 		Inventario inventario = mock(Inventario.class);
-		when(inventario.estaDisponible(producto)).thenReturn(true);
+		when(inventario.hayStock(producto, 2)).thenReturn(true);
 		Sucursal sucursal = new Sucursal(inventario);
 
-		assertEquals(true, sucursal.hayStockEnLocal(producto));
+		assertEquals(true, sucursal.hayStockEnLocal(producto, 2));
 	}
 }

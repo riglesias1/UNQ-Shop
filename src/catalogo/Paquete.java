@@ -82,9 +82,9 @@ public class Paquete implements ItemCatalogo{
 	}
 
 	@Override
-	public boolean tieneStock(Inventario inventario) {
+	public boolean tieneStock(Inventario inventario, int cantidad) {
 		for (ItemCatalogo item: this.items) {
-			if (! item.tieneStock(inventario)) {
+			if (! item.tieneStock(inventario, cantidad)) {
 				return false;
 			}
 		}

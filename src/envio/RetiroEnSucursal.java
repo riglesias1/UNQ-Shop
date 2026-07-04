@@ -22,7 +22,7 @@ public class RetiroEnSucursal implements MetodoEnvio {
 		for (LineaPedido lineaPedido : pedido.getLineas()) {
 			ItemCatalogo item = lineaPedido.getItem();
 			
-			if (!sucursal.hayStockEnLocal(item)) {
+			if (!sucursal.hayStockEnLocal(item,	lineaPedido.getCantidad())) {
 				return RangoDias.entre(0, 3);
 			}
 		}

@@ -10,7 +10,7 @@ public class Sucursal {
 		this.inventario = inventario;
 	}
 	
-	public boolean hayStockEnLocal(ItemCatalogo item) {
-		return inventario.estaDisponible(item);
+	public boolean hayStockEnLocal(ItemCatalogo item, int cantidad) {
+		return inventario.hayStock(item, cantidad);
 	}	
 }
