@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import catalogo.Categoria;
 import catalogo.Producto;
+import envio.MetodoEnvio;
 import excepciones.CantidadInvalidaException;
 import excepciones.MovimientoEstadoInvalido;
+import pago.MetodoPago;
 import pedido.Inventario;
 import pedido.Pedido;
 
@@ -23,7 +25,7 @@ public class BorradorTest {
     @BeforeEach
     void setUp() {
         inventario = mock(Inventario.class);
-        pedido = new Pedido(inventario);
+        pedido = new Pedido(inventario, mock(MetodoEnvio.class), mock(MetodoPago.class));
         teclado = new Producto("TEC-001", "Teclado", null, "Logitech", Categoria.ELECTRONICA, 5000);
         mouse = new Producto("MOU-001", "Mouse", null, "Logitech", Categoria.ELECTRONICA, 2000);
     }

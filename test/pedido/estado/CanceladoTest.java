@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import catalogo.Categoria;
 import catalogo.Producto;
 import envio.EnvioExpress;
+import envio.MetodoEnvio;
 import pago.ApiBilleteraVirtual;
+import pago.MetodoPago;
 import pago.PagoBilleteraVirtual;
 import pedido.Inventario;
 import pedido.Pedido;
@@ -26,7 +28,7 @@ public class CanceladoTest {
         producto = new Producto("P-1", "Producto", null, "Marca", Categoria.ELECTRONICA, 1000);
         inventario.incrementar(producto, 10);
 
-        pedido = new Pedido(inventario);
+        pedido = new Pedido(inventario, mock(MetodoEnvio.class), mock(MetodoPago.class));
         pedido.setMetodoEnvio(new EnvioExpress(500d, 0d));
         pedido.setMetodoPago(new PagoBilleteraVirtual(mock(ApiBilleteraVirtual.class)));
         pedido.agregarItem(producto, 1);

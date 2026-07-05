@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import catalogo.Categoria;
 import catalogo.Producto;
+import envio.MetodoEnvio;
+import pago.MetodoPago;
 import pedido.Inventario;
 import pedido.Pedido;
 
@@ -19,7 +21,7 @@ public class NotificadorEmailTest {
 	@BeforeEach
 	void setUp() {
 		mailSender = mock(MailSender.class);
-        pedido = new Pedido(mock(Inventario.class));
+        pedido = new Pedido(mock(Inventario.class), mock(MetodoEnvio.class), mock(MetodoPago.class));
         pedido.agregarItem(new Producto("P-1", "Producto", null, "Marca", Categoria.ELECTRONICA, 1000), 1);
         pedido.suscribir(new NotificadorEmail(mailSender));
 	}

@@ -26,8 +26,10 @@ public class Pedido {
     private String direccionEnvio;
     private LocalDate fecha;
 
-    public Pedido(Inventario inventario) {
+    public Pedido(Inventario inventario, MetodoEnvio metodoEnvio, MetodoPago metodoPago) {
         this.inventario = inventario;
+        this.metodoEnvio = metodoEnvio;
+        this.metodoPago = metodoPago;
         this.estado = new Borrador();
         this.fecha = LocalDate.now();
     }
@@ -74,7 +76,7 @@ public class Pedido {
 	}
 
 	public double costoEnvio(){
-		return this.metodoEnvio == null ? 0d : this.metodoEnvio.calcularCosto(this);
+		return this.metodoEnvio.calcularCosto(this);
 	}
 
 	// -------------- NOTA DE CREDITO -------------- \\

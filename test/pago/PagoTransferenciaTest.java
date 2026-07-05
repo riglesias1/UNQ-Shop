@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import catalogo.Categoria;
 import catalogo.Producto;
+import envio.MetodoEnvio;
 import excepciones.PagoInvalidoException;
 import pedido.Inventario;
 import pedido.Pedido;
@@ -24,7 +25,7 @@ public class PagoTransferenciaTest {
 	@BeforeEach
 	void setUp() {
 		api = mock(ApiTransferencia.class);
-        pedido = new Pedido(mock(Inventario.class));
+        pedido = new Pedido(mock(Inventario.class), mock(MetodoEnvio.class), mock(MetodoPago.class));
         pedido.agregarItem(new Producto("P-1", "Producto", null, "Marca", Categoria.ELECTRONICA, 1000), 1);
 	}
 

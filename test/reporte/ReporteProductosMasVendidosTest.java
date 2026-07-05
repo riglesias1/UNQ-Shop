@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import catalogo.Categoria;
 import catalogo.Paquete;
 import catalogo.Producto;
+import envio.MetodoEnvio;
+import pago.MetodoPago;
 import pedido.Inventario;
 import pedido.Pedido;
 
@@ -28,7 +30,7 @@ public class ReporteProductosMasVendidosTest {
 	}
 
 	private Pedido crearPedidoVendido(LocalDate fecha) {
-		Pedido pedido = new Pedido(mock(Inventario.class));
+		Pedido pedido = new Pedido(mock(Inventario.class), mock(MetodoEnvio.class), mock(MetodoPago.class));
 		pedido.setFecha(fecha);
 		return pedido;
 	}

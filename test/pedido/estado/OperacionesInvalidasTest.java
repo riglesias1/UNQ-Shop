@@ -10,7 +10,9 @@ import org.junit.jupiter.api.Test;
 
 import catalogo.Categoria;
 import catalogo.Producto;
+import envio.MetodoEnvio;
 import excepciones.MovimientoEstadoInvalido;
+import pago.MetodoPago;
 import pedido.Inventario;
 import pedido.Pedido;
 
@@ -20,7 +22,7 @@ public class OperacionesInvalidasTest {
 
 	@BeforeEach
 	void setUp() {
-		pedido = new Pedido(mock(Inventario.class));
+		pedido = new Pedido(mock(Inventario.class), mock(MetodoEnvio.class), mock(MetodoPago.class));
 		producto = new Producto("P-1", "Producto", null, "Marca", Categoria.ELECTRONICA, 1000);
 		pedido.agregarItem(producto, 2);
 	}

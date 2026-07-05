@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import catalogo.Atributo;
 import catalogo.Categoria;
 import catalogo.Producto;
+import pago.MetodoPago;
 import pedido.Inventario;
 import pedido.Pedido;
 
@@ -22,7 +23,7 @@ public class EnvioTest {
 
 	@BeforeEach
 	void setUp() {
-		pedido = new Pedido(mock(Inventario.class));
+		pedido = new Pedido(mock(Inventario.class), mock(MetodoEnvio.class), mock(MetodoPago.class));
 		producto = new Producto("P-1", "Producto", null, "Marca", Categoria.ELECTRONICA, 1000);
 		producto.definirAtributo(new Atributo("peso", 2.0, true));
 		pedido.agregarItem(producto, 3);
