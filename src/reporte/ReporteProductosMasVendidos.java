@@ -6,6 +6,7 @@ import java.util.List;
 import catalogo.ItemCatalogo;
 import pedido.LineaPedido;
 import pedido.Pedido;
+import pedido.estado.EstadoPedido;
 
 
 public class ReporteProductosMasVendidos implements Reporte {
@@ -37,13 +38,13 @@ public class ReporteProductosMasVendidos implements Reporte {
 	}
 
 	private boolean esVenta(Pedido pedido) {
-		String estado = pedido.nombreEstado();
-		return !(estado == "BORRADOR") && !(estado == "CANCELADO");
+		EstadoPedido estado = pedido.getEstado();
+		return estado.representaVenta();
 	}
 
 	private VentaAcumulada buscarOCrear(List<VentaAcumulada> acumuladas, ItemCatalogo item) {
 		for (VentaAcumulada acumulada : acumuladas) {
-			if (acumulada.getItem() == item) {
+			if (acumulada.getItem().equals(item)) {
 				return acumulada;
 			}
 		}

@@ -44,4 +44,24 @@ public abstract class EstadoBase implements EstadoPedido{
 	public void cancelar(Pedido pedido) {
 		throw rechazar("cancelar");
 	}
+
+	@Override
+	public boolean esNotificable() {
+		return false;
+	}
+
+	@Override
+	public boolean estaEntregado() {
+		return false;
+	}
+
+	@Override
+	public boolean estaCancelado() {
+		return false;
+	}
+
+	@Override
+	public boolean representaVenta() {
+		return false;
+	}
 }

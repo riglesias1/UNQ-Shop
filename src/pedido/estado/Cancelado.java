@@ -5,4 +5,9 @@ public class Cancelado extends EstadoBase {
     public String nombre() {
         return "CANCELADO";
     }
+
+    @Override
+	public boolean estaCancelado() {
+		return true;
+	}
 }

@@ -128,6 +128,10 @@ public class Pedido {
     public String nombreEstado() {
         return estado.nombre();
     }
+    
+    public EstadoPedido getEstado() {
+    	return this.estado;
+    }
 
 	public void confirmar(){
         this.estado.confirmar(this);

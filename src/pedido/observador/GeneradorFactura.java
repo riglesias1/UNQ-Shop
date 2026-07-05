@@ -13,7 +13,7 @@ public class GeneradorFactura implements ObservadorPedido {
 
 	@Override
 	public void alCambiarEstado(Pedido pedido, EstadoPedido anterior, EstadoPedido nuevo) {
-		if (!"ENTREGADO".equals(nuevo.nombre())) {
+		if (!nuevo.estaEntregado()) {
 			return;
 		}
 		double total = pedido.totalProductos() + pedido.costoEnvio();

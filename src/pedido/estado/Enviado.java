@@ -20,4 +20,14 @@ public class Enviado extends EstadoBase{
 		pedido.setEstado(new Cancelado());
 	}
 
+	@Override
+    public boolean esNotificable(){
+        return true;
+    }
+	
+	@Override
+	public boolean representaVenta() {
+		return true;
+	}
+
 }

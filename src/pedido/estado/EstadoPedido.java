@@ -12,4 +12,8 @@ public interface EstadoPedido {
 	void enviar(Pedido pedido);
 	void entregar(Pedido pedido);
 	void cancelar(Pedido pedido);
+	boolean esNotificable();
+	boolean estaEntregado();
+	boolean estaCancelado();
+	boolean representaVenta();
 }	

@@ -20,5 +20,10 @@ public class EnPreparacion extends EstadoBase {
 		pedido.registrarNotaCredito(pedido.totalProductos() + pedido.costoEnvio());
 		pedido.setEstado(new Cancelado());
 	}
+	
+	@Override
+	public boolean representaVenta() {
+		return true;
+	}
 
 }

@@ -12,7 +12,7 @@ public class Fidelizacion implements ObservadorPedido {
 
 	@Override
 	public void alCambiarEstado(Pedido pedido, EstadoPedido anterior, EstadoPedido nuevo) {
-		if (!"CANCELADO".equals(nuevo.nombre())) {
+		if (!nuevo.estaCancelado()) {
 			return;
 		}
 		int porcentaje = 5;

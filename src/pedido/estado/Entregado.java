@@ -5,4 +5,19 @@ public class Entregado extends EstadoBase {
     public String nombre() {
         return "ENTREGADO";
     }
+
+    @Override
+    public boolean esNotificable(){
+        return true;
+    }
+
+    @Override
+	public boolean estaEntregado() {
+		return true;
+	}
+    
+    @Override
+	public boolean representaVenta() {
+		return true;
+	}
 }

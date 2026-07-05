@@ -20,4 +20,14 @@ public class Confirmado extends EstadoBase {
         pedido.registrarNotaCredito(pedido.totalProductos() + pedido.costoEnvio());
         pedido.setEstado(new Cancelado());
     }
+
+    @Override
+    public boolean esNotificable(){
+        return true;
+    }
+    
+    @Override
+	public boolean representaVenta() {
+		return true;
+	}
 }

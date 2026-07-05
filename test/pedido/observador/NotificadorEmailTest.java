@@ -31,7 +31,7 @@ public class NotificadorEmailTest {
 		pedido.confirmar();
 		verify(mailSender).enviarMail(pedido.getDireccionEnvio(),
 				"Estado de tu pedido: " + "CONFIRMADO",
-				"Tu pedido cambió de estado a " + "CONFIRMADO" + ".",
+				"Tu pedido cambió de estar BORRADOR"+ " a estar " + "CONFIRMADO.",
 				null);
 		}
 	
@@ -41,7 +41,7 @@ public class NotificadorEmailTest {
 		pedido.prepararEnvio();
 		verify(mailSender, times(1)).enviarMail(pedido.getDireccionEnvio(),
 				"Estado de tu pedido: " + "CONFIRMADO",
-				"Tu pedido cambió de estado a " + "CONFIRMADO" + ".",
+				"Tu pedido cambió de estar BORRADOR"+ " a estar " + "CONFIRMADO.",
 				null);
 	}
 }
